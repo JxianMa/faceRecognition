@@ -11,21 +11,20 @@
 
 
 @class faceDetector;
-@protocol faceDetectorDelegate <NSObject>
+@protocol DetectFaceDelegate <NSObject>
 
-- (void)detectedFaceController:(faceDetector *)controller features:(NSArray *)featuresArray forVideoBox:(CGRect)clap withPreviewBox:(CGRect)previewBox ;
+- (void)drawFaceBoxesForFeatures:(NSArray *)features forVideoBox:(CGRect)clap orientation:(UIDeviceOrientation)orientation forLayer:(CALayer*)previewLayer forPreivewBox:(CGRect)previewBox;
 @end
-
 
 @interface faceDetector : NSObject
 @property (nonatomic, weak) id delegate;
+
 @property (nonatomic, strong) UIView *previewView;
--(void)startDetection;
--(void)stopDetection;
+
+- (void)startDetection;
+- (void)stopDetection;
+
 + (CGRect)convertFrame:(CGRect)originalFrame previewBox:(CGRect)previewBox forVideoBox:(CGRect)videoBox isMirrored:(BOOL)isMirrored;
-
-
-
 
 
 
